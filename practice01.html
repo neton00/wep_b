@@ -4,10 +4,30 @@
         <meta charset="UTF-8">
         <meta name ="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>표 만들기</title>
+        <style>
+            table {
+                width: 800px;
+                table-layout: fixed;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                height: 45px;
+                padding: 8px;
+                text-align: center;
+                vertical-align: middle;
+                overflow-wrap: break-word;
+            }
+        </style>
     </head>
     <body>
         <h1>시간표</h1>
         <table border="2">
+            <colgroup>
+                <col style="width: 90px;">
+                <col span="5" style="width: 142px;">
+            </colgroup>
             <thead>
                 <tr>
                     <th></th>

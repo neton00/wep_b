@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Document</title>
+    </head>
+    <script src="https://code.jquery.com/jquery-4.0.0.module.min.js" integrity="sha256-d4LwM9D6pTkixVQVP66nz3BYd8ri7Uriz7C3X4qBAVE=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $("p").hover(function() {
+                $("this").css('color', 'red');
+            }, function() {
+                $("this").css('color', 'black');
+            });
+            $('a').click(function(e) {
+                e.preventDefault();
+                location.href = 'https://www.naver.com';
+        });
+        });
+    </script>
+    
+    <body>
+        <h1>jQuery 이벤트 처리</h1>
+        <p><a href="http://www.syu.ac.kr" >삼육대 </a></p>
+        <p>인공지능 융합학부</p>
+        <p>인공지능 융합학부</p>
+        <button >클릭</button>
+    
+    </body>
+</html>

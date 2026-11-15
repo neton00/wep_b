@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>계산기</title>
+        <style>
+            h1 { text-align: center; }
+            #calc { width: 220px; margin: auto; }
+            .disp { width: 205px; height: 40px; margin-top: 3px;
+                    text-align: right; font-size: 22px; }
+            input[type=button] { width: 50px; height: 50px; margin-top: 5px; }
+        </style>
+    </head>
+    <body>
+        <h1>계산기</h1>
+        <div id="calc">
+            <input type="text" class="disp" id="disp1" readonly><br>
+            <input type="text" class="disp" id="disp2" value="0" readonly><br>
+
+            <input type="button" value="7" onclick="number('7')">
+            <input type="button" value="8" onclick="number('8')">
+            <input type="button" value="9" onclick="number('9')">
+            <input type="button" value="+" onclick="operation('+')"><br>
+            <input type="button" value="4" onclick="number('4')">
+            <input type="button" value="5" onclick="number('5')">
+            <input type="button" value="6" onclick="number('6')">
+            <input type="button" value="-" onclick="operation('-')"><br>
+            <input type="button" value="1" onclick="number('1')">
+            <input type="button" value="2" onclick="number('2')">
+            <input type="button" value="3" onclick="number('3')">
+            <input type="button" value="*" onclick="operation('*')"><br>
+            <input type="button" value="0" onclick="number('0')">
+            <input type="button" value="." onclick="number('.')">
+            <input type="button" value="=" onclick="operation('=')">
+            <input type="button" value="/" onclick="operation('/')"><br>
+            <input type="button" value="C" onclick="clearAll()">
+        </div>
+
+        <script>
+            let first = 0;
+            let op = '';
+            let newNumber = true;
+            let disp1 = document.getElementById('disp1');
+            let disp2 = document.getElementById('disp2');
+
+            function number(n) {
+                if (newNumber) {
+                    disp2.value = '0';
+                    newNumber = false;
+                    if (op == '') {
+                        disp1.value = '';
+                    }
+                }
+
+                if (n == '.') {
+                    if (!disp2.value.includes('.')) {
+                        disp2.value += '.';
+                    }
+                } else if (disp2.value == '0') {
+                    disp2.value = n;
+                } else {
+                    disp2.value += n;
+                }
+            }
+
+            function operation(n) {
+                if (disp2.value == '오류') {
+                    return;
+                }
+
+                let second = Number(disp2.value);
+                if (op != '' && !newNumber) {
+                    let result = 0;
+                    disp1.value = first + ' ' + op + ' ' + second + ' =';
+
+                    // 저장해 둔 연산자에 따라 직접 계산한다.
+                    if (op == '+') {
+                        result = first + second;
+                    } else if (op == '-') {
+                        result = first - second;
+                    } else if (op == '*') {
+                        result = first * second;
+                    } else if (op == '/') {
+                        if (second == 0) {
+                            disp2.value = '오류';
+                            op = '';
+                            newNumber = true;
+                            return;
+                        }
+                        result = first / second;
+                    }
+
+                    disp2.value = result;
+                }
+
+                first = Number(disp2.value);
+                newNumber = true;
+                if (n == '=') {
+                    op = '';
+                } else {
+                    op = n;
+                    disp1.value = first + ' ' + op;
+                }
+            }
+
+            function clearAll() {
+                first = 0;
+                op = '';
+                newNumber = true;
+                disp1.value = '';
+                disp2.value = '0';
+            }
+        </script>
+    </body>
+</html>

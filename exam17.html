@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Document</title>
+    </head>
+    <style>
+        h1 { text-align: center; }
+        .disp { width: 205px; height: 40px; margin-top: 3px; }
+        .disp { text-align: right; font-family: "Oxanium", sans-serif; font-size: 22pt; }
+        input[type=button] {width: 50px; height: 50px; margin-top: 5px; 
+                text-align: center; vertical-align: middle; }
+        #calc { width: 200px; margin-left: auto; margin-right:auto;}    
+    </style>
+    <script src="https://code.jquery.com/jquery-4.0.0.module.min.js" integrity="sha256-d4LwM9D6pTkixVQVP66nz3BYd8ri7Uriz7C3X4qBAVE=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('.num').click(function(){
+                let cur = $('#disp2').val();
+                let n = $(this).val();
+                $('#disp2').val(cur + n);
+
+            });
+            $('.op').click(function(){
+                let cur = $('#disp2').val();
+                let n = $(this).val(cur + n);
+                if( n != "=") {
+                    $("disp2").val(cur + n);
+
+                }
+                else {
+                    let result = eval(cur);
+                    $('#disp1').val(cur);
+                    $('#disp2').val(result);
+                }
+            });
+        });
+    </script>
+    <body>
+        <h1>계산기</h1>
+        <div id="'calc">
+
+            <div>
+                <input tpye="text" class="disp" id="disp1" readonly>
+                <input tpye="text" class="disp" id="disp1" readonly>
+            </div>
+            <input tpye="text" class="num" value="7">
+            <input tpye="text" class="num" value="8">
+            <input tpye="text" class="num" value="9">
+            <input tpye="text" class="op" value="+"><br>
+            <input tpye="text" class="num" value="4">
+            <input tpye="text" class="num" value="5">
+            <input tpye="text" class="num" value="6">
+            <input tpye="text" class="op" value="-"><br>
+            <input tpye="text" class="num" value="1">
+            <input tpye="text" class="num" value="2">
+            <input tpye="text" class="num" value="3">
+            <input tpye="text" class="op" value="*"><br>
+            <input tpye="text" class="num" value="0">
+            <input tpye="text" class="op" value="=">
+            <input tpye="text" class="op" value="/">
+    </body>
+</html>

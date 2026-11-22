@@ -6,9 +6,25 @@ const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
 //라우팅 설정
-app.length("/", (req, res)=>{
+app.get("/", (req, res)=>{
     res.status(200);
     res.send("hello, node");
+});
+app.get("/users", (req, res)=>{
+    res.status(200);
+    res.send("Get all users");
+});
+app.post("/users", (req, res)=>{
+    res.status(200);
+    res.send("Create a new user");
+});
+app.get("/users/:id", (req, res)=>{
+    const userID = req.params.id;
+    res.status(200);
+    res.send(`${userID}사용자 정보 요청`);
+    console.log(req.body);
+    console.log(req.params);
+    console.log(req.query);
 });
 
 // 서버 실행
